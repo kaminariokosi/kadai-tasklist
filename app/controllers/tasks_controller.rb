@@ -20,10 +20,11 @@ class TasksController < ApplicationController
     else
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
+    end
   end
 
   def edit
-     @mtask = Task.find(params[:id])
+    @mtask = Task.find(params[:id])
   end
 
   def update
@@ -42,13 +43,13 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
- flash[:success] = 'Task は正常に削除されました'
+  flash[:success] = 'Task は正常に削除されました'
     redirect_to tasks_url
   end
   
 private
-
   # Strong Parameter
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :status)
   end
+end
